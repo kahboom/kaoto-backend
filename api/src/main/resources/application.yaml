@@ -3,10 +3,23 @@ repository:
     jar:
       - "https://repo1.maven.org/maven2/org/apache/camel/kamelets/camel-kamelets/0.6.0/camel-kamelets-0.6.0.jar"
       - "https://github.com/KaotoIO/camel-component-metadata/archive/refs/heads/main.zip"
+    git:
+      -
+        url: "https://github.com/KaotoIO/camel-component-metadata.git"
+        tag: "main"
+      -
+        url: "git@github.com:kahboom/custom-step-catalog.git"
+        tag: "main"
   viewdefinition:
     jar:
       - "https://github.com/KaotoIO/kaoto-viewdefinition-catalog/archive/refs/heads/main.zip"
-
+    git:
+      -
+        url: "https://github.com/KaotoIO/kaoto-viewdefinition-catalog.git"
+        tag: "main"
+      -
+        url: "git@github.com:kahboom/custom-viewdefinition-catalog.git"
+        tag: "main"
 crd:
   default: "KameletBinding"
 
