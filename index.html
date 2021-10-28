@@ -50,13 +50,12 @@
 	}
 
 	h2 {
-		margin-top: 4em;
+		margin-top: 2em;
 		margin-left: 0;
 		position: sticky;
 		top: 0;
 		z-index: 10;
 		background: white;
-		height: 29px;
 	}
 	section.namespace{
 		margin-left: 1.5em;
@@ -71,36 +70,255 @@
 <body>
 	<h1>Zimara backend documentation</h1>
 
-    <h2>Model</h2>
-    <a target="_blank" href="./class-diagram-model.svg" ><img width="500px" src="./class-diagram-model.svg"/></a>
+	<p>This is an automated documentation generated based on comments in the code.</p>
 
-    <h2>Api</h2>
-    <a target="_blank" href="./class-diagram.svg-api" ><img width="500px" src="./class-diagram-api.svg"/></a>
+    <h2>Simplified Class Hierarchy</h2>
 
-	<h2 id='stepresource'>StepResource</h2>
+    <a target="_blank" href="./class-diagram.dot.svg" ><img style="max-width:100%" src="./class-diagram.dot.svg"/></a>
+    <p>(click to enlarge)</p>
+
+	<h2 id='abstractcatalog'>AbstractCatalog</h2>
 <section class='namespace'>
-<p>This endpoint will return steps based on the parameters.</p>
+<p>Abstract implementation of an ApplicationScoped catalog.
+This will be the base of the beans
+that can be injected in the different services and resources.</p>
 
-
-</section>
-<h2 id='viewdefinitionresource'>ViewDefinitionResource</h2>
-<section class='namespace'>
-<p>This endpoint will return a list of views based on the parameters.
-&lt;p&gt;</p>
-
-<h3 id='viewdefinitionresource-example'>Usage example</h3>
+<h3 id='abstractcatalog-method'>Methods</h3>
 
 <section>
 
 
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='abstractcatalog-waitforwarmup'>
+		<td><code><b>waitForWarmUp</b>()</nobr></code></td>
+		<td><code>CompletableFuture</code></td>
+		<td>Completable reference to when the loadParsers method finishes.</td>
+	</tr>
+	<tr id='abstractcatalog-loadparsers'>
+		<td><code><b>loadParsers</b>()</nobr></code></td>
+		<td><code>List[ParseCatalog]</code></td>
+		<td>Loads all the catalogs into the bean</td>
+	</tr>
+</tbody></table>
+</section>
 
-<p>&lt;p&gt;</p>
-<pre><code>YAML
-</code></pre>
+
+
+</section>
+<h2 id='stepcatalog'>StepCatalog</h2>
+<section class='namespace'>
+<p>This is a singleton that will contain all catalogs with steps.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#abstractcatalog'>AbstractCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='stepcatalog-waitforwarmup'>
+		<td><code><b>waitForWarmUp</b>()</nobr></code></td>
+		<td><code>CompletableFuture</code></td>
+		<td>Completable reference to when the loadParsers method finishes.</td>
+	</tr>
+	<tr id='stepcatalog-loadparsers'>
+		<td><code><b>loadParsers</b>()</nobr></code></td>
+		<td><code>List[ParseCatalog]</code></td>
+		<td>Loads all the catalogs into the bean</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='viewdefinitioncatalog'>ViewDefinitionCatalog</h2>
+<section class='namespace'>
+<p>This is a singleton that will contain all catalogs with viewdefinitions.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#abstractcatalog'>AbstractCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='viewdefinitioncatalog-waitforwarmup'>
+		<td><code><b>waitForWarmUp</b>()</nobr></code></td>
+		<td><code>CompletableFuture</code></td>
+		<td>Completable reference to when the loadParsers method finishes.</td>
+	</tr>
+	<tr id='viewdefinitioncatalog-loadparsers'>
+		<td><code><b>loadParsers</b>()</nobr></code></td>
+		<td><code>List[ParseCatalog]</code></td>
+		<td>Loads all the catalogs into the bean</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='deploymentresource'>DeploymentResource</h2>
+<section class='namespace'>
+<p>This endpoint will return the yaml needed to deploy
+the related integration and the
+endpoints to interact with deployments.</p>
+
+<h3 id='deploymentresource-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='deploymentresource-yaml'>
+		<td><code><b>yaml</b>(<nobr>&lt;<a href='#deploymentresourceyamlrequest'>DeploymentResourceYamlRequest</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>String</code></td>
+		<td>Based on the steps provided, offer a yaml deployment</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+<h2 id='deploymentresourceyamlrequest'></h2>
+<section class='namespace'>
+
+<h3 id='deploymentresourceyamlrequest-property'>DeploymentResourceYamlRequest</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='deploymentresourceyamlrequest-name'>
+		<td><code><b>name</b>
+		<td><code>String</code></td>
+		<td>Name of the integration</td>
+	</tr>
+	<tr id='deploymentresourceyamlrequest-steps'>
+		<td><code><b>steps</b>
+		<td><code><a href='#kameletstep'>KameletStep[]</a></code></td>
+		<td>steps of the integration</td>
+	</tr>
+</tbody></table>
+</section>
+
 
 
 </section>
 
+</section>
+<h2 id='stepresource'>StepResource</h2>
+<section class='namespace'>
+<p>This endpoint will return steps based on the parameters.</p>
+
+<h3 id='stepresource-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='stepresource-stepbyid'>
+		<td><code><b>stepById</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#step'>Step</a></code></td>
+		<td>Returns the first step identified by the parameter.</td>
+	</tr>
+	<tr id='stepresource-stepsbyname'>
+		<td><code><b>stepsByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#step'>List[Step]</a></code></td>
+		<td>Returns all the steps identified by the name.</td>
+	</tr>
+	<tr id='stepresource-allsteps'>
+		<td><code><b>allSteps</b>()</nobr></code></td>
+		<td><code><a href='#step'>List[Step]</a></code></td>
+		<td>Returns all the steps.</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+<h2 id='stepservice'></h2>
+<section class='namespace'>
+
+<h3 id='stepservice-method'>StepService</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='stepservice-stepbyid'>
+		<td><code><b>stepById</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#step'>Step</a></code></td>
+		<td>Returns the first step identified by the parameter.</td>
+	</tr>
+	<tr id='stepservice-stepsbyname'>
+		<td><code><b>stepsByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#step'>List[Step]</a></code></td>
+		<td>Returns all the steps identified by the name.</td>
+	</tr>
+	<tr id='stepservice-allsteps'>
+		<td><code><b>allSteps</b>()</nobr></code></td>
+		<td><code><a href='#step'>List[Step]</a></code></td>
+		<td>Returns all the steps.</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+
+</section>
+<h2 id='viewdefinitionresource'>ViewDefinitionResource</h2>
+<section class='namespace'>
+<p>This endpoint will return a list of views based on the parameters.</p>
 
 <h3 id='viewdefinitionresource-method'>Methods</h3>
 
@@ -123,20 +341,608 @@
 </section>
 
 
+<h2 id='viewdefinitionresourceresponse'></h2>
+<section class='namespace'>
+
+
+</section>
+
+</section>
+<h2 id='deploymentservice'>DeploymentService</h2>
+<section class='namespace'>
+<p>This endpoint will return a list of views based on the parameters.</p>
+
+<h3 id='deploymentservice-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='deploymentservice-yaml'>
+		<td><code><b>yaml</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>, <nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code>String</code></td>
+		<td>Based on the provided steps, return a valid yaml string to deploy</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+<h2 id='deploymentgeneratorservice'>DeploymentGeneratorService</h2>
+<section class='namespace'>
+<p>Generic interface to generate yaml deployments</p>
+
+<h3 id='deploymentgeneratorservice-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='deploymentgeneratorservice-parse'>
+		<td><code><b>parse</b>(<nobr>&lt;String&gt; <i>name</i></nobr>, <nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>String</code></td>
+		<td>Based on the list of steps, returns the yaml to deploy it.
+If applies, the name will be the name used on the integration deployed.</td>
+	</tr>
+	<tr id='deploymentgeneratorservice-appliesto'>
+		<td><code><b>appliesTo</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Check if the parser applies to the steps</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+<h2 id='stepparserservice'>StepParserService</h2>
+<section class='namespace'>
+<p>Generic interface for all step parsers.</p>
+
+<h3 id='stepparserservice-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='stepparserservice-parse'>
+		<td><code><b>parse</b>(<nobr>&lt;String&gt; <i>yaml</i></nobr>)</nobr></code></td>
+		<td><code><a href='#step'>List[Step]</a></code></td>
+		<td>Based on the YAML provided, offer a list of steps defined on it, if any</td>
+	</tr>
+	<tr id='stepparserservice-appliesto'>
+		<td><code><b>appliesTo</b>(<nobr>&lt;String&gt; <i>yaml</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Check if this parser knows how to parse the provided string</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+<h2 id='kameletbindingstepparserservice'></h2>
+<section class='namespace'>
+
+
+</section>
+
+</section>
+<h2 id='viewdefinitionservice'>ViewDefinitionService</h2>
+<section class='namespace'>
+<p>This endpoint will return a list of views based on the parameters.</p>
+
+<h3 id='viewdefinitionservice-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='viewdefinitionservice-views'>
+		<td><code><b>views</b>(<nobr>&lt;String&gt; <i>yaml</i></nobr>)</nobr></code></td>
+		<td><code><a href='#viewdefinition'>List[ViewDefinition]</a></code></td>
+		<td>Based on the provided yaml, offer a list of compatible ViewDefinitions.</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+<h2 id='viewdefinitionparserservice'>ViewDefinitionParserService</h2>
+<section class='namespace'>
+<p>Generic interface for all viewDefinition parsers.</p>
+
+<h3 id='viewdefinitionparserservice-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='viewdefinitionparserservice-parse'>
+		<td><code><b>parse</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code><a href='#viewdefinition'>List[ViewDefinition]</a></code></td>
+		<td>Based on the list of steps, offer a list of compatible ViewDefinitions.</td>
+	</tr>
+	<tr id='viewdefinitionparserservice-getviewsperstep'>
+		<td><code><b>getViewsPerStep</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>, <nobr>&lt;<a href='#viewdefinition'>ViewDefinition</a>&gt; <i>view</i></nobr>)</nobr></code></td>
+		<td><code><a href='#viewdefinition'>List[ViewDefinition]</a></code></td>
+		<td>If the ViewDefinition is a stepView, it returns all
+possible ViewDefinitions associated to steps.</td>
+	</tr>
+	<tr id='viewdefinitionparserservice-appliesto'>
+		<td><code><b>appliesTo</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>, <nobr>&lt;<a href='#viewdefinition'>ViewDefinition</a>&gt; <i>viewDefinition</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Check if the viewDefinition applies to the steps</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+<h2 id='genericviewdefinitionparserservice'></h2>
+<section class='namespace'>
+
+
+</section>
+
+</section>
+<h2 id='metadatacatalog'>MetadataCatalog</h2>
+<section class='namespace'>
+<p>All metadata catalogs implements this interface.
+Helper to unify catalog handling implementation.</p>
+
+<h3 id='metadatacatalog-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='metadatacatalog-searchstepbyid'>
+		<td><code><b>searchStepByID</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the element identified by the parameter.</td>
+	</tr>
+	<tr id='metadatacatalog-searchstepbyname'>
+		<td><code><b>searchStepByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the first element found (no order warranteed)
+identified by the name.
+<p>Returns all the elements found (no order warranteed)
+identified by the name.</p></td>
+	</tr>
+	<tr id='metadatacatalog-store'>
+		<td><code><b>store</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Stores the elements passed as parameter on the catalog.
+Returns true if no error was found.</td>
+	</tr>
+	<tr id='metadatacatalog-getall'>
+		<td><code><b>getAll</b>()</nobr></code></td>
+		<td><code><a href='#metadata'>List[Metadata]</a></code></td>
+		<td>Returns all the elements in the catalog.
+Be careful using this as there's no limit
+on the amount of data stored on the catalog.</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+<h2 id='parsecatalog'>ParseCatalog</h2>
+<section class='namespace'>
+<p>Load and warm up catalog utility.</p>
+
+<h3 id='parsecatalog-method'>Methods</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='parsecatalog-parse'>
+		<td><code><b>parse</b>()</nobr></code></td>
+		<td><code>CompletableFuture[List[T]]</code></td>
+		<td>Load all the source data, parse it and
+return a completable list of elements to add to a catalog.</td>
+	</tr>
+	<tr id='parsecatalog-setfilevisitor'>
+		<td><code><b>setFileVisitor</b>(<nobr>&lt;<a href='#yamlprocessfile'>YamlProcessFile</a>&gt; <i>fileVisitor</i></nobr>)</nobr></code></td>
+		<td><code></code></td>
+		<td></td>
+	</tr>
+</tbody></table>
+</section>
+
+
 
 </section>
 <h2 id='catalogcollection'>CatalogCollection</h2>
 <section class='namespace'>
-<p>Joins a list of catalogs.</p>
-<p>When those catalogs are updated, the content of this collection changes too.
+<p>Joins a list of metadata catalogs.
+When those catalogs are updated, the content of this collection changes too.
 As each catalog have their own ID constraints, there may be more than one
 connector with the same ID on this collection of catalogs.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#metadatacatalog'>MetadataCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='catalogcollection-searchstepbyid'>
+		<td><code><b>searchStepByID</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the element identified by the parameter.</td>
+	</tr>
+	<tr id='catalogcollection-searchstepbyname'>
+		<td><code><b>searchStepByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the first element found (no order warranteed)
+identified by the name.
+<p>Returns all the elements found (no order warranteed)
+identified by the name.</p></td>
+	</tr>
+	<tr id='catalogcollection-store'>
+		<td><code><b>store</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Stores the elements passed as parameter on the catalog.
+Returns true if no error was found.</td>
+	</tr>
+	<tr id='catalogcollection-getall'>
+		<td><code><b>getAll</b>()</nobr></code></td>
+		<td><code><a href='#metadata'>List[Metadata]</a></code></td>
+		<td>Returns all the elements in the catalog.
+Be careful using this as there's no limit
+on the amount of data stored on the catalog.</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='inmemorycatalog'>InMemoryCatalog</h2>
+<section class='namespace'>
+<p>Basic catalog implementation useful for testing and small instances.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#metadatacatalog'>MetadataCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='inmemorycatalog-searchstepbyid'>
+		<td><code><b>searchStepByID</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the element identified by the parameter.</td>
+	</tr>
+	<tr id='inmemorycatalog-searchstepbyname'>
+		<td><code><b>searchStepByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the first element found (no order warranteed)
+identified by the name.
+<p>Returns all the elements found (no order warranteed)
+identified by the name.</p></td>
+	</tr>
+	<tr id='inmemorycatalog-store'>
+		<td><code><b>store</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Stores the elements passed as parameter on the catalog.
+Returns true if no error was found.</td>
+	</tr>
+	<tr id='inmemorycatalog-getall'>
+		<td><code><b>getAll</b>()</nobr></code></td>
+		<td><code><a href='#metadata'>List[Metadata]</a></code></td>
+		<td>Returns all the elements in the catalog.
+Be careful using this as there's no limit
+on the amount of data stored on the catalog.</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='readonlycatalog'>ReadOnlyCatalog</h2>
+<section class='namespace'>
+<p>A Catalog Collection we make sure it can't be modified.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#metadatacatalog'>MetadataCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='readonlycatalog-searchstepbyid'>
+		<td><code><b>searchStepByID</b>(<nobr>&lt;String&gt; <i>id</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the element identified by the parameter.</td>
+	</tr>
+	<tr id='readonlycatalog-searchstepbyname'>
+		<td><code><b>searchStepByName</b>(<nobr>&lt;String&gt; <i>name</i></nobr>)</nobr></code></td>
+		<td><code><a href='#metadata'>Metadata</a></code></td>
+		<td>Returns the first element found (no order warranteed)
+identified by the name.
+<p>Returns all the elements found (no order warranteed)
+identified by the name.</p></td>
+	</tr>
+	<tr id='readonlycatalog-store'>
+		<td><code><b>store</b>(<nobr>&lt;<a href='#step'>List[Step]</a>&gt; <i>steps</i></nobr>)</nobr></code></td>
+		<td><code>boolean</code></td>
+		<td>Stores the elements passed as parameter on the catalog.
+Returns true if no error was found.</td>
+	</tr>
+	<tr id='readonlycatalog-getall'>
+		<td><code><b>getAll</b>()</nobr></code></td>
+		<td><code><a href='#metadata'>List[Metadata]</a></code></td>
+		<td>Returns all the elements in the catalog.
+Be careful using this as there's no limit
+on the amount of data stored on the catalog.</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='gitparsecatalog'>GitParseCatalog</h2>
+<section class='namespace'>
+<p>Abstract implementation that downloads a git repository
+and walks through all the files
+parsing them and preparing elements to add to a catalog.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#parsecatalog'>ParseCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='gitparsecatalog-parse'>
+		<td><code><b>parse</b>()</nobr></code></td>
+		<td><code>CompletableFuture[List[T]]</code></td>
+		<td>Load all the source data, parse it and
+return a completable list of elements to add to a catalog.</td>
+	</tr>
+	<tr id='gitparsecatalog-setfilevisitor'>
+		<td><code><b>setFileVisitor</b>(<nobr>&lt;<a href='#yamlprocessfile'>YamlProcessFile</a>&gt; <i>fileVisitor</i></nobr>)</nobr></code></td>
+		<td><code></code></td>
+		<td></td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='jarparsecatalog'>JarParseCatalog</h2>
+<section class='namespace'>
+<p>Abstract implementation that downloads a jar file
+and walks through all the files
+parsing them and preparing elements to add to a catalog.</p>
+
+<h3 id=''>Methods</h3>
+
+
+<details>
+	<summary>Methods inherited from <a href='#parsecatalog'>ParseCatalog</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='jarparsecatalog-parse'>
+		<td><code><b>parse</b>()</nobr></code></td>
+		<td><code>CompletableFuture[List[T]]</code></td>
+		<td>Load all the source data, parse it and
+return a completable list of elements to add to a catalog.</td>
+	</tr>
+	<tr id='jarparsecatalog-setfilevisitor'>
+		<td><code><b>setFileVisitor</b>(<nobr>&lt;<a href='#yamlprocessfile'>YamlProcessFile</a>&gt; <i>fileVisitor</i></nobr>)</nobr></code></td>
+		<td><code></code></td>
+		<td></td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+
+
+</section>
+<h2 id='yamlprocessfile'>YamlProcessFile</h2>
+<section class='namespace'>
+<p>Helper class to walk around YAML files to parse Metadata objects.</p>
+
+
+</section>
+<h2 id='kameletparsecatalog'>KameletParseCatalog</h2>
+<section class='namespace'>
+<p>Reads and parses a kamelet catalog.
+Extracts all the kamelet definitions it can find
+and generate a kamelet step for each one.</p>
+
+
+</section>
+<h2 id='viewdefinitionparsecatalog'>ViewDefinitionParseCatalog</h2>
+<section class='namespace'>
+<p>Reads and parses a view definition catalog.
+Extracts all the view definitions it can find
+and generate a ViewDefinition for each one.</p>
+
+
+</section>
+<h2 id='metadata'>Metadata</h2>
+<section class='namespace'>
+<p>Common class for all metadata.
+Used to simplify the implementation of catalogs.</p>
+
+<h3 id='metadata-property'>Properties</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='metadata-id'>
+		<td><code><b>ID</b>
+		<td><code>String</code></td>
+		<td>Unique identifier for this step in our whole Zimara environment</td>
+	</tr>
+	<tr id='metadata-name'>
+		<td><code><b>name</b>
+		<td><code>String</code></td>
+		<td>This represents the first part of the camel connection string.
+It may or may not be the same as the ID depending on the type of step.</td>
+	</tr>
+	<tr id='metadata-type'>
+		<td><code><b>type</b>
+		<td><code>String</code></td>
+		<td>Type of step: transformation, connector</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+<h2 id='kameletbinding'>KameletBinding</h2>
+<section class='namespace'>
+<p>Represents a Kamelet binding that can be deployed</p>
+<pre><code>apiVersion: camel.apache.org/v1alpha1
+kind: KameletBinding
+metadata:
+   name: twitter-search-source-binding
+spec:
+    source:
+        ref:
+            kind: Kamelet
+            apiVersion: camel.apache.org/v1alpha1
+            name: twitter-search-source
+        properties:
+            keywords: &quot;Apache Camel&quot;
+            apiKey: &quot;your own&quot;
+            apiKeySecret: &quot;your own&quot;
+            accessToken: &quot;your own&quot;
+            accessTokenSecret: &quot;your own&quot;
+    steps:
+        -
+            ref:
+                kind: Kamelet
+                apiVersion: camel.apache.org/v1alpha1
+                name: aws-translate-action
+        -
+            ref:
+                kind: Kamelet
+                apiVersion: camel.apache.org/v1alpha1
+                name: avro-deserialize-action
+    sink:
+        ref:
+            kind: Kamelet
+            apiVersion: camel.apache.org/v1alpha1
+            name: kafka-sink
+        properties:
+            brokers: &quot;The Brokers&quot;
+            password: &quot;The Password&quot;
+            topic: &quot;The Topic Names&quot;
+            username: &quot;The Username&quot;
+</code></pre>
 
 
 </section>
 <h2 id='parameter'>Parameter</h2>
 <section class='namespace'>
-<p>Represents a parameter on a form.</p>
+<p>Represents a parameter of a step in an integration.
+These parameters could be used on the UI to configure the step.</p>
 
 <h3 id='parameter-property'>Properties</h3>
 
@@ -150,6 +956,11 @@ connector with the same ID on this collection of catalogs.</p>
 		<th>Description</th>
 	</tr>
 	</thead><tbody>
+	<tr id='parameter-description'>
+		<td><code><b>description</b>
+		<td><code>String</code></td>
+		<td>Helping text describing the parameter</td>
+	</tr>
 	<tr id='parameter-label'>
 		<td><code><b>label</b>
 		<td><code>String</code></td>
@@ -160,25 +971,21 @@ connector with the same ID on this collection of catalogs.</p>
 		<td><code>String</code></td>
 		<td>Identifier of the parameter</td>
 	</tr>
-	<tr id='parameter-type'>
-		<td><code><b>type</b>
+	<tr id='parameter-value'>
+		<td><code><b>value</b>
 		<td><code>String</code></td>
-		<td>Type of parameter: text, integer, float, boolean,...</td>
+		<td>Actual value of this parameter.
+Used when describing a configured element.</td>
 	</tr>
 	<tr id='parameter-default'>
 		<td><code><b>default</b>
 		<td><code>String</code></td>
 		<td>Default value, if there is any</td>
 	</tr>
-	<tr id='parameter-description'>
-		<td><code><b>description</b>
+	<tr id='parameter-type'>
+		<td><code><b>type</b>
 		<td><code>String</code></td>
-		<td>Helping text describing the parameter</td>
-	</tr>
-	<tr id='parameter-value'>
-		<td><code><b>value</b>
-		<td><code>String</code></td>
-		<td>Actual value of this parameter. Used when describing a configured element.</td>
+		<td>Type of parameter: text, integer, float, boolean,...</td>
 	</tr>
 </tbody></table>
 </section>
@@ -188,11 +995,57 @@ connector with the same ID on this collection of catalogs.</p>
 </section>
 <h2 id='step'>Step</h2>
 <section class='namespace'>
-<p>Represents a step inside an integration</p>
+<p>Represents a step inside an integration.</p>
 
 <h3 id='step-property'>Properties</h3>
 
 <section>
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='step-subtype'>
+		<td><code><b>subtype</b>
+		<td><code>String</code></td>
+		<td>Specifies the subtype (kamelet connector, camel connector,...)</td>
+	</tr>
+	<tr id='step-description'>
+		<td><code><b>description</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='step-title'>
+		<td><code><b>title</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='step-parameters'>
+		<td><code><b>parameters</b>
+		<td><code><a href='#parameter'>List[Parameter]</a></code></td>
+		<td></td>
+	</tr>
+	<tr id='step-icon'>
+		<td><code><b>icon</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='step-uuid'>
+		<td><code><b>UUID</b>
+		<td><code>String</code></td>
+		<td>Volatile UUID to mark the relationship between
+a viewDefinition and a step.</td>
+	</tr>
+</tbody></table>
+</section>
+
+<details>
+	<summary>Properties inherited from <a href='#metadata'>Metadata</a></summary>
+	<div class='accordion-content'><section>
 
 
 <table><thead>
@@ -207,27 +1060,29 @@ connector with the same ID on this collection of catalogs.</p>
 		<td><code>String</code></td>
 		<td>Unique identifier for this step in our whole Zimara environment</td>
 	</tr>
+	<tr id='step-name'>
+		<td><code><b>name</b>
+		<td><code>String</code></td>
+		<td>This represents the first part of the camel connection string.
+It may or may not be the same as the ID depending on the type of step.</td>
+	</tr>
 	<tr id='step-type'>
 		<td><code><b>type</b>
 		<td><code>String</code></td>
 		<td>Type of step: transformation, connector</td>
 	</tr>
-	<tr id='step-subtype'>
-		<td><code><b>subtype</b>
-		<td><code>String</code></td>
-		<td>If we need a subtype like kamelet connector, camel connector,...</td>
-	</tr>
 </tbody></table>
 </section>
-
+</div>
+</details>
 
 
 </section>
-<h2 id='view'>View</h2>
+<h2 id='kameletstep'>KameletStep</h2>
 <section class='namespace'>
-<p>Represents a possible view the frontend can use to view data and metadata.</p>
+<p>Represents a Kamelet step inside an integration</p>
 
-<h3 id='view-property'>Properties</h3>
+<h3 id='kameletstep-property'>Properties</h3>
 
 <section>
 
@@ -239,31 +1094,83 @@ connector with the same ID on this collection of catalogs.</p>
 		<th>Description</th>
 	</tr>
 	</thead><tbody>
-	<tr id='view-type'>
-		<td><code><b>type</b>
+	<tr id='kameletstep-group'>
+		<td><code><b>group</b>
 		<td><code>String</code></td>
-		<td>Type of the view. It could be an integration view, a connector view,...</td>
+		<td>Kamelet group that identifies and classifies inside the kamelet world.</td>
 	</tr>
-	<tr id='view-name'>
-		<td><code><b>name</b>
+	<tr id='kameletstep-kamelettype'>
+		<td><code><b>kameletType</b>
 		<td><code>String</code></td>
-		<td>Human name for the view</td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-apiversion'>
+		<td><code><b>apiVersion</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-kind'>
+		<td><code><b>kind</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-spec'>
+		<td><code><b>spec</b>
+		<td><code>String</code></td>
+		<td></td>
 	</tr>
 </tbody></table>
 </section>
 
-
-
-</section>
-<h2 id='kameletstep'>KameletStep</h2>
-<section class='namespace'>
-<p>Represents a Kamelet step inside an integration</p>
-
-<h3 id=''>Properties</h3>
-
-
 <details>
 	<summary>Properties inherited from <a href='#step'>Step</a></summary>
+	<div class='accordion-content'><section>
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='kameletstep-subtype'>
+		<td><code><b>subtype</b>
+		<td><code>String</code></td>
+		<td>Specifies the subtype (kamelet connector, camel connector,...)</td>
+	</tr>
+	<tr id='kameletstep-description'>
+		<td><code><b>description</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-title'>
+		<td><code><b>title</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-parameters'>
+		<td><code><b>parameters</b>
+		<td><code><a href='#parameter'>List[Parameter]</a></code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-icon'>
+		<td><code><b>icon</b>
+		<td><code>String</code></td>
+		<td></td>
+	</tr>
+	<tr id='kameletstep-uuid'>
+		<td><code><b>UUID</b>
+		<td><code>String</code></td>
+		<td>Volatile UUID to mark the relationship between
+a viewDefinition and a step.</td>
+	</tr>
+</tbody></table>
+</section>
+</div>
+</details>
+<details>
+	<summary>Properties inherited from <a href='#metadata'>Metadata</a></summary>
 	<div class='accordion-content'><section>
 
 
@@ -279,15 +1186,16 @@ connector with the same ID on this collection of catalogs.</p>
 		<td><code>String</code></td>
 		<td>Unique identifier for this step in our whole Zimara environment</td>
 	</tr>
+	<tr id='kameletstep-name'>
+		<td><code><b>name</b>
+		<td><code>String</code></td>
+		<td>This represents the first part of the camel connection string.
+It may or may not be the same as the ID depending on the type of step.</td>
+	</tr>
 	<tr id='kameletstep-type'>
 		<td><code><b>type</b>
 		<td><code>String</code></td>
 		<td>Type of step: transformation, connector</td>
-	</tr>
-	<tr id='kameletstep-subtype'>
-		<td><code><b>subtype</b>
-		<td><code>String</code></td>
-		<td>If we need a subtype like kamelet connector, camel connector,...</td>
 	</tr>
 </tbody></table>
 </section>
@@ -296,11 +1204,12 @@ connector with the same ID on this collection of catalogs.</p>
 
 
 </section>
-<h2 id='integrationview'>IntegrationView</h2>
+<h2 id='viewdefinition'>ViewDefinition</h2>
 <section class='namespace'>
-<p>Represents an integration view, composed by steps.</p>
+<p>Represents a possible view the frontend can use to show data and metadata.
+It may have some constraints on when this view can be used.</p>
 
-<h3 id='integrationview-property'>Properties</h3>
+<h3 id='viewdefinition-property'>Properties</h3>
 
 <section>
 
@@ -312,16 +1221,36 @@ connector with the same ID on this collection of catalogs.</p>
 		<th>Description</th>
 	</tr>
 	</thead><tbody>
-	<tr id='integrationview-steps'>
-		<td><code><b>steps</b>
-		<td><code>List<Step></code></td>
-		<td>List of Steps on this integration</td>
+	<tr id='viewdefinition-properties'>
+		<td><code><b>properties</b>
+		<td><code>Map[String, String]</code></td>
+		<td>Properties useful for the user interface to visualize
+this view definition.</td>
+	</tr>
+	<tr id='viewdefinition-step'>
+		<td><code><b>step</b>
+		<td><code><a href='#step'>Step</a></code></td>
+		<td>If this extension relates to a specific step (StepExtension),
+point to it via the UUID of the step in this integration.</td>
+	</tr>
+	<tr id='viewdefinition-url'>
+		<td><code><b>url</b>
+		<td><code>String</code></td>
+		<td>If this is a custom step, url to fetch the view.</td>
+	</tr>
+	<tr id='viewdefinition-constraints'>
+		<td><code><b>constraints</b>
+		<td><code><a href='#viewdefinitionconstraint'>List[ViewDefinitionConstraint]</a></code></td>
+		<td>List of constraints on when to use this view.
+All mandatory constraints must be fulfilled.
+If there are optional constraints, at least
+one of them should be fulfilled.</td>
 	</tr>
 </tbody></table>
 </section>
 
 <details>
-	<summary>Properties inherited from <a href='#view'>View</a></summary>
+	<summary>Properties inherited from <a href='#metadata'>Metadata</a></summary>
 	<div class='accordion-content'><section>
 
 
@@ -332,15 +1261,21 @@ connector with the same ID on this collection of catalogs.</p>
 		<th>Description</th>
 	</tr>
 	</thead><tbody>
-	<tr id='integrationview-type'>
-		<td><code><b>type</b>
+	<tr id='viewdefinition-id'>
+		<td><code><b>ID</b>
 		<td><code>String</code></td>
-		<td>Type of the view. It could be an integration view, a connector view,...</td>
+		<td>Unique identifier for this step in our whole Zimara environment</td>
 	</tr>
-	<tr id='integrationview-name'>
+	<tr id='viewdefinition-name'>
 		<td><code><b>name</b>
 		<td><code>String</code></td>
-		<td>Human name for the view</td>
+		<td>This represents the first part of the camel connection string.
+It may or may not be the same as the ID depending on the type of step.</td>
+	</tr>
+	<tr id='viewdefinition-type'>
+		<td><code><b>type</b>
+		<td><code>String</code></td>
+		<td>Type of step: transformation, connector</td>
 	</tr>
 </tbody></table>
 </section>
@@ -349,6 +1284,104 @@ connector with the same ID on this collection of catalogs.</p>
 
 
 </section>
+<h2 id='viewdefinitionconstraint'>ViewDefinitionConstraint</h2>
+<section class='namespace'>
+<p>Represents a constraint on when to use a view definition.</p>
 
+<h3 id='viewdefinitionconstraint-property'>Properties</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='viewdefinitionconstraint-mandatory'>
+		<td><code><b>mandatory</b>
+		<td><code>boolean</code></td>
+		<td>Is this a mandatory constraint or an optional?</td>
+	</tr>
+	<tr id='viewdefinitionconstraint-operation'>
+		<td><code><b>operation</b>
+		<td><code><a href='#constraintoperation'>ConstraintOperation</a></code></td>
+		<td>Operation defining this constraint (contains, greater than,...)</td>
+	</tr>
+	<tr id='viewdefinitionconstraint-parameter'>
+		<td><code><b>parameter</b>
+		<td><code>String</code></td>
+		<td>Parameter of the constraint (number of steps, identifier of step,...)</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+<h2 id='constraintoperation'></h2>
+<section class='namespace'>
+
+<h3 id='constraintoperation-option'>ConstraintOperation</h3>
+
+<section>
+
+
+<table><thead>
+	<tr>
+		<th>Option</th>
+		<th>Type</th>
+		<th>Default</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='constraintoperation-contains_step_identifier'>
+		<td><code><b>CONTAINS_STEP_IDENTIFIER</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the list of steps in the integration contains a step with this identifier.</td>
+	</tr>
+	<tr id='constraintoperation-contains_step_name'>
+		<td><code><b>CONTAINS_STEP_NAME</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the list of steps in the integration contains a step with this identifier.</td>
+	</tr>
+	<tr id='constraintoperation-contains_step_type'>
+		<td><code><b>CONTAINS_STEP_TYPE</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the list of steps in the integration contains a step with this name.</td>
+	</tr>
+	<tr id='constraintoperation-size_greater_than'>
+		<td><code><b>SIZE_GREATER_THAN</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the size of the list of steps is greater than this number.</td>
+	</tr>
+	<tr id='constraintoperation-size_smaller_than'>
+		<td><code><b>SIZE_SMALLER_THAN</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the size of the list of steps is smaller than this number.</td>
+	</tr>
+	<tr id='constraintoperation-size_equals'>
+		<td><code><b>SIZE_EQUALS</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>True if the size of the list of steps is equals to this number.</td>
+	</tr>
+</tbody></table>
+</section>
+
+
+
+</section>
+
+</section>
+
+
+    <br/>
+	<p>You can learn more on <a target="_blank" href="https://zimara.io">https://zimara.io</a>.</p>
 
 </body></html>
