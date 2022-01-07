@@ -2,44 +2,16 @@ digraph ClassDiagram {
 	node [shape=plaintext]
 	edge [arrowhead=empty];
 
-"AbstractCatalog" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>AbstractCatalog</B></TD></TR>
-	<TR><TD><I>Methods</I><BR/>
-waitForWarmUp():CompletableFuture
-<BR align="left" />
-loadParsers():List[ParseCatalog]
-<BR align="left" />
-
-</TD></TR>
-
-
-</TABLE>>]
-
-
-		"AbstractCatalog" -> "MetadataCatalog" [
-		arrowhead=open, style=dashed
-		
-		
-		
-		]
-"StepCatalog" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>StepCatalog</B></TD></TR>
-	
-</TABLE>>]
-
-	"StepCatalog" -> "AbstractCatalog"
-
-"ViewDefinitionCatalog" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>ViewDefinitionCatalog</B></TD></TR>
-	
-</TABLE>>]
-
-	"ViewDefinitionCatalog" -> "AbstractCatalog"
-
 "DeploymentResource" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>DeploymentResource</B></TD></TR>
 	<TR><TD><I>Methods</I><BR/>
-yaml(&lt;DeploymentResourceYamlRequest&gt; steps):String
+yaml(&lt;DeploymentResourceYamlRequest&gt; steps, &lt;String&gt; type):String[]
+<BR align="left" />
+start(&lt;DeploymentResourceYamlRequest&gt; steps):String
+<BR align="left" />
+integrations():String
+<BR align="left" />
+stop():String
 <BR align="left" />
 
 </TD></TR>
@@ -59,6 +31,10 @@ yaml(&lt;DeploymentResourceYamlRequest&gt; steps):String
 stepById(&lt;String&gt; id):Step
 <BR align="left" />
 stepsByName(&lt;String&gt; name):List[Step]
+<BR align="left" />
+stepsByKind(&lt;String&gt; type):List[Step]
+<BR align="left" />
+stepsByIntegrationType(&lt;String&gt; type):List[Step]
 <BR align="left" />
 allSteps():List[Step]
 <BR align="left" />
@@ -104,46 +80,6 @@ yaml(&lt;List[Step]&gt; steps, &lt;String&gt; name):String
 </TABLE>>]
 
 
-"DeploymentGeneratorService" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>DeploymentGeneratorService</B></TD></TR>
-	<TR><TD><I>Methods</I><BR/>
-parse(&lt;String&gt; name, &lt;List[Step]&gt; steps):String
-<BR align="left" />
-appliesTo(&lt;List[Step]&gt; steps):boolean
-<BR align="left" />
-
-</TD></TR>
-
-
-</TABLE>>]
-
-
-		"DeploymentGeneratorService" -> "Step" [
-		arrowhead=open, style=dashed
-		
-		
-		
-		]
-"StepParserService" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>StepParserService</B></TD></TR>
-	<TR><TD><I>Methods</I><BR/>
-parse(&lt;String&gt; yaml):List[Step]
-<BR align="left" />
-appliesTo(&lt;String&gt; yaml):boolean
-<BR align="left" />
-
-</TD></TR>
-
-
-</TABLE>>]
-
-
-		"StepParserService" -> "Step" [
-		arrowhead=open, style=dashed
-		
-		
-		
-		]
 "ViewDefinitionService" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>ViewDefinitionService</B></TD></TR>
 	<TR><TD><I>Methods</I><BR/>
@@ -168,14 +104,12 @@ views(&lt;String&gt; yaml):List[ViewDefinition]
 		
 		
 		]
-"ViewDefinitionParserService" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>ViewDefinitionParserService</B></TD></TR>
+"AbstractCatalog" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>AbstractCatalog</B></TD></TR>
 	<TR><TD><I>Methods</I><BR/>
-parse(&lt;List[Step]&gt; steps):List[ViewDefinition]
+waitForWarmUp():CompletableFuture
 <BR align="left" />
-getViewsPerStep(&lt;List[Step]&gt; steps, &lt;ViewDefinition&gt; view):List[ViewDefinition]
-<BR align="left" />
-appliesTo(&lt;List[Step]&gt; steps, &lt;ViewDefinition&gt; viewDefinition):boolean
+loadParsers():List[ParseCatalog]
 <BR align="left" />
 
 </TD></TR>
@@ -184,12 +118,50 @@ appliesTo(&lt;List[Step]&gt; steps, &lt;ViewDefinition&gt; viewDefinition):boole
 </TABLE>>]
 
 
-		"ViewDefinitionParserService" -> "ViewDefinition" [
+		"AbstractCatalog" -> "MetadataCatalog" [
 		arrowhead=open, style=dashed
 		
 		
 		
 		]
+"StepCatalog" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>StepCatalog</B></TD></TR>
+	
+</TABLE>>]
+
+	"StepCatalog" -> "AbstractCatalog"
+
+"ViewDefinitionCatalog" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>ViewDefinitionCatalog</B></TD></TR>
+	
+</TABLE>>]
+
+	"ViewDefinitionCatalog" -> "AbstractCatalog"
+
+"KameletParseCatalog" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>KameletParseCatalog</B></TD></TR>
+	
+</TABLE>>]
+
+
+		"KameletParseCatalog" -> "ParseCatalog" [
+		arrowhead=open, style=dashed
+		
+		
+		
+		]
+"Kamelet" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>Kamelet</B></TD></TR>
+	
+</TABLE>>]
+
+
+"KameletBinding" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>KameletBinding</B></TD></TR>
+	
+</TABLE>>]
+
+
 "MetadataCatalog" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>MetadataCatalog</B></TD></TR>
 	<TR><TD><I>Methods</I><BR/>
@@ -281,18 +253,6 @@ setFileVisitor(&lt;YamlProcessFile&gt; fileVisitor):
 		
 		
 		]
-"KameletParseCatalog" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>KameletParseCatalog</B></TD></TR>
-	
-</TABLE>>]
-
-
-		"KameletParseCatalog" -> "ParseCatalog" [
-		arrowhead=open, style=dashed
-		
-		
-		
-		]
 "ViewDefinitionParseCatalog" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>ViewDefinitionParseCatalog</B></TD></TR>
 	
@@ -316,12 +276,6 @@ ID:String<BR align="left" />name:String<BR align="left" />type:String<BR align="
 </TABLE>>]
 
 
-"KameletBinding" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>KameletBinding</B></TD></TR>
-	
-</TABLE>>]
-
-
 "Parameter" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>Parameter</B></TD></TR>
 	<TR><TD><I>Properties</I><BR/>
@@ -336,7 +290,7 @@ description:String<BR align="left" />label:String<BR align="left" />id:String<BR
 "Step" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>Step</B></TD></TR>
 	<TR><TD><I>Properties</I><BR/>
-subtype:String<BR align="left" />description:String<BR align="left" />title:String<BR align="left" />parameters:List[Parameter]<BR align="left" />icon:String<BR align="left" />UUID:String<BR align="left" />
+description:String<BR align="left" />title:String<BR align="left" />parameters:List[Parameter]<BR align="left" />icon:String<BR align="left" />UUID:String<BR align="left" />group:String<BR align="left" />kind:String<BR align="left" />
 
 </TD></TR>
 
@@ -345,23 +299,6 @@ subtype:String<BR align="left" />description:String<BR align="left" />title:Stri
 
 	"Step" -> "Metadata"
 
-"KameletStep" [ label = <<TABLE CELLSPACING="0">
-	<TR><TD><B>KameletStep</B></TD></TR>
-	<TR><TD><I>Properties</I><BR/>
-group:String<BR align="left" />kameletType:String<BR align="left" />apiVersion:String<BR align="left" />kind:String<BR align="left" />spec:String<BR align="left" />
-
-</TD></TR>
-
-
-</TABLE>>]
-
-	"KameletStep" -> "Step"
-
-		"Parameter" -> "KameletStep" [dir=both; arrowhead=diamond; arrowtail=none
-		
-		, taillabel="0..n"
-		
-		]
 "ViewDefinition" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>ViewDefinition</B></TD></TR>
 	<TR><TD><I>Properties</I><BR/>
@@ -390,6 +327,72 @@ mandatory:boolean<BR align="left" />operation:ConstraintOperation<BR align="left
 </TABLE>>]
 
 
+"DeploymentGeneratorService" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>DeploymentGeneratorService</B></TD></TR>
+	<TR><TD><I>Methods</I><BR/>
+identifier():String
+<BR align="left" />
+parse(&lt;String&gt; name, &lt;List[Step]&gt; steps):String
+<BR align="left" />
+appliesTo(&lt;List[Step]&gt; steps):boolean
+<BR align="left" />
+getKinds():String[]
+<BR align="left" />
+
+</TD></TR>
+
+
+</TABLE>>]
+
+
+		"DeploymentGeneratorService" -> "Step" [
+		arrowhead=open, style=dashed
+		
+		
+		
+		]
+"StepParserService" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>StepParserService</B></TD></TR>
+	<TR><TD><I>Methods</I><BR/>
+parse(&lt;String&gt; yaml):List[Step]
+<BR align="left" />
+appliesTo(&lt;String&gt; yaml):boolean
+<BR align="left" />
+
+</TD></TR>
+
+
+</TABLE>>]
+
+
+		"StepParserService" -> "Step" [
+		arrowhead=open, style=dashed
+		
+		
+		
+		]
+"ViewDefinitionParserService" [ label = <<TABLE CELLSPACING="0">
+	<TR><TD><B>ViewDefinitionParserService</B></TD></TR>
+	<TR><TD><I>Methods</I><BR/>
+parse(&lt;List[Step]&gt; steps):List[ViewDefinition]
+<BR align="left" />
+getViewsPerStep(&lt;List[Step]&gt; steps, &lt;ViewDefinition&gt; view):List[ViewDefinition]
+<BR align="left" />
+appliesTo(&lt;List[Step]&gt; steps, &lt;ViewDefinition&gt; viewDefinition):boolean
+<BR align="left" />
+
+</TD></TR>
+
+
+</TABLE>>]
+
+
+		"ViewDefinitionParserService" -> "ViewDefinition" [
+		arrowhead=open, style=dashed
+		
+		
+		
+		]
 
 
 }
