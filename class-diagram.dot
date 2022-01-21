@@ -279,7 +279,7 @@ ID:String<BR align="left" />name:String<BR align="left" />type:String<BR align="
 "Parameter" [ label = <<TABLE CELLSPACING="0">
 	<TR><TD><B>Parameter</B></TD></TR>
 	<TR><TD><I>Properties</I><BR/>
-description:String<BR align="left" />label:String<BR align="left" />id:String<BR align="left" />value:String<BR align="left" />default:String<BR align="left" />type:String<BR align="left" />
+description:String<BR align="left" />title:String<BR align="left" />id:String<BR align="left" />value:Object<BR align="left" />default:Object<BR align="left" />type:String<BR align="left" />path:Boolean<BR align="left" />nullable:Boolean<BR align="left" />enum:Object[]<BR align="left" />examples:Object[]<BR align="left" />
 
 </TD></TR>
 
@@ -332,7 +332,7 @@ mandatory:boolean<BR align="left" />operation:ConstraintOperation<BR align="left
 	<TR><TD><I>Methods</I><BR/>
 identifier():String
 <BR align="left" />
-parse(&lt;String&gt; name, &lt;List[Step]&gt; steps):String
+parse(&lt;String&gt; name, &lt;List[Step]&gt; steps, &lt;Map&gt; metadata):String
 <BR align="left" />
 appliesTo(&lt;List[Step]&gt; steps):boolean
 <BR align="left" />
