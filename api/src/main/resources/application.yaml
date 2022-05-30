@@ -8,7 +8,7 @@ repository:
         url: "https://github.com/KaotoIO/camel-component-metadata.git"
         tag: "main"
       -
-        url: "git@github.com:kahboom/custom-step-catalog.git"
+        url: "https://github.com/kahboom/custom-step-catalog.git"
         tag: "main"
   viewdefinition:
     jar:
@@ -18,7 +18,7 @@ repository:
         url: "https://github.com/KaotoIO/kaoto-viewdefinition-catalog.git"
         tag: "main"
       -
-        url: "git@github.com:kahboom/custom-viewdefinition-catalog.git"
+        url: "https://github.com/kahboom/custom-viewdefinition-catalog.git"
         tag: "main"
 crd:
   default: "KameletBinding"
