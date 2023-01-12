@@ -7,9 +7,15 @@
         - url: "https://github.com/KaotoIO/camel-component-metadata/archive/refs/heads/main.zip"
         - url: "resource://camel-connectors-3.19.0.zip"
           kind: "Camel-Connector"
+      git:
+        - url: "https://github.com/kahboom/custom-step-catalog.git"
+          tag: "main"
     viewdefinition:
       jar:
         - url: "https://github.com/KaotoIO/kaoto-viewdefinition-catalog/archive/refs/heads/main.zip"
+      git:
+        - url: "https://github.com/kahboom/custom-viewdefinition-catalog.git"
+          tag: "main"
 "%prod":
   repository:
     step:
